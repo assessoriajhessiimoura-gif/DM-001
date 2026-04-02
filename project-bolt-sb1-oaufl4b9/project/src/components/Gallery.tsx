@@ -1,10 +1,16 @@
-import { Image } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 export const Gallery = () => {
   const { elementRef, isVisible } = useScrollAnimation();
 
-  const galleryItems = [1, 2, 3, 4, 5, 6];
+  const galleryItems = [
+    { src: "/images/1.jpg" },
+    { src: "/images/2.jpg" },
+    { src: "/images/3.jpg" },
+    { src: "/images/4.jpg" },
+    { src: "/images/5.jpg" },
+    { src: "/images/6.jpg" },
+  ];
 
   return (
     <section ref={elementRef} className="py-24 bg-black relative overflow-hidden">
@@ -15,7 +21,9 @@ export const Gallery = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             Nossa <span className="text-orange-500">Galeria</span>
           </h2>
-          <p className="text-xl text-gray-400 mt-4">Veja de perto a qualidade dos nossos serviços e a estrutura da nossa oficina</p>
+          <p className="text-xl text-gray-400 mt-4">
+            Veja de perto a qualidade dos nossos serviços e a estrutura da nossa oficina
+          </p>
           <div className="w-24 h-1 bg-gradient-to-r from-orange-600 to-orange-400 mx-auto mt-6"></div>
         </div>
 
@@ -28,12 +36,24 @@ export const Gallery = () => {
               }`}
               style={{ transitionDelay: `${200 + index * 100}ms` }}
             >
-              <div className="absolute inset-0 flex items-center justify-center">
-                <Image className="w-16 h-16 text-gray-700 group-hover:text-orange-500 transition-colors duration-300" />
-              </div>
+
+              {/* IMAGEM AQUI */}
+              <img
+                src={item.src}
+                alt={`Serviço ${index + 1}`}
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+
+              {/* OVERLAY ESCURO (mantido) */}
+              <div className="absolute inset-0 bg-black/40"></div>
+
+              {/* TEXTO HOVER (mantido) */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6">
-                <p className="text-white font-semibold">Serviço Profissional {item}</p>
+                <p className="text-white font-semibold">
+                  Serviço Profissional {index + 1}
+                </p>
               </div>
+
             </div>
           ))}
         </div>
