@@ -1,0 +1,4 @@
+[build]
+  base = "project-bolt-sb1-oaufl4b9/project"
+  publish = "dist"
+  command = "npm run build"
