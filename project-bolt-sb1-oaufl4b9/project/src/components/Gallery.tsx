@@ -1,23 +1,26 @@
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 export const Gallery = () => {
-  const { elementRef, isVisible } = useScrollAnimation();
+  const { elementRef, isVisible } = useScrollAnimation() || {};
 
   const galleryItems = [
-    { src: "/images/1.jpg" },
-    { src: "/images/2.jpg" },
-    { src: "/images/3.jpg" },
-    { src: "/images/4.jpg" },
-    { src: "/images/5.jpg" },
-    { src: "/images/6.jpg" },
+    { src: "/WhatsApp Image 2026-04-01 at 22.52.29.jpeg" },
+    { src: "/WhatsApp Image 2026-04-01 at 22.52.33.jpeg" },
+    { src: "/WhatsApp Image 2026-04-01 at 22.52.33 (1).jpeg" },
+    { src: "/Picsart_26-04-01_22-07-15-322.png" },
   ];
 
   return (
-    <section ref={elementRef} className="py-24 bg-black relative overflow-hidden">
+    <section
+      ref={elementRef || null}
+      className="py-24 bg-black relative overflow-hidden"
+    >
       <div className="container mx-auto px-6 max-w-7xl">
-        <div className={`text-center mb-16 transition-all duration-1000 delay-100 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}>
+        <div
+          className={`text-center mb-16 transition-all duration-1000 delay-100 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
+        >
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             Nossa <span className="text-orange-500">Galeria</span>
           </h2>
@@ -36,24 +39,24 @@ export const Gallery = () => {
               }`}
               style={{ transitionDelay: `${200 + index * 100}ms` }}
             >
-
-              {/* IMAGEM AQUI */}
               <img
-                src={item.src}
+                src={encodeURI(item.src)}
                 alt={`Serviço ${index + 1}`}
+                loading="lazy"
+                onError={(e) => {
+                  console.log("Erro ao carregar:", item.src);
+                  e.target.style.display = "none";
+                }}
                 className="absolute inset-0 w-full h-full object-cover"
               />
 
-              {/* OVERLAY ESCURO (mantido) */}
               <div className="absolute inset-0 bg-black/40"></div>
 
-              {/* TEXTO HOVER (mantido) */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6">
                 <p className="text-white font-semibold">
                   Serviço Profissional {index + 1}
                 </p>
               </div>
-
             </div>
           ))}
         </div>
