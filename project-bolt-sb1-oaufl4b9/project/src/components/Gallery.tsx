@@ -1,15 +1,23 @@
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
+// IMPORTS (ESSA É A DIFERENÇA 🔥)
+import capa from "../assets/Picsart_26-04-01_22-07-15-322.png";
+import foto1 from "../assets/foto1.jpg";
+import foto2 from "../assets/foto2.jpg";
+import foto3 from "../assets/foto3.jpg";
+import video1 from "../assets/video1.mp4";
+import video2 from "../assets/video2.mp4";
+
 export const Gallery = () => {
   const { elementRef, isVisible } = useScrollAnimation();
 
   const galleryItems = [
-    { type: "image", src: "/Picsart_26-04-01_22-07-15-322.png" },
-    { type: "image", src: "/foto1.jpg" },
-    { type: "image", src: "/foto2.jpg" },
-    { type: "image", src: "/foto3.jpg" },
-    { type: "video", src: "/video1.mp4" },
-    { type: "video", src: "/video2.mp4" },
+    { type: "image", src: capa },
+    { type: "image", src: foto1 },
+    { type: "image", src: foto2 },
+    { type: "image", src: foto3 },
+    { type: "video", src: video1 },
+    { type: "video", src: video2 },
   ];
 
   return (
@@ -51,15 +59,17 @@ export const Gallery = () => {
                 <video
                   className="absolute inset-0 w-full h-full object-cover"
                   controls
+                  muted
+                  playsInline
                 >
                   <source src={item.src} type="video/mp4" />
                 </video>
               )}
 
-              {/* OVERLAY ESCURO */}
+              {/* OVERLAY */}
               <div className="absolute inset-0 bg-black/40"></div>
 
-              {/* TEXTO HOVER */}
+              {/* TEXTO */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6">
                 <p className="text-white font-semibold">
                   Serviço Profissional {index + 1}
